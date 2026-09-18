@@ -1,0 +1,898 @@
+/* =========================================================
+   AURA PRODUCT ADMIN
+   CLEAN WHITE + SKY BLUE
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   VARIABLES
+   --------------------------------------------------------- */
+
+:root {
+  --aura-blue: #0ea5e9;
+  --aura-blue-dark: #0284c7;
+  --aura-blue-soft: #eff9ff;
+  --aura-blue-light: #f7fcff;
+
+  --aura-text: #183447;
+  --aura-text-soft: #668092;
+  --aura-text-muted: #96a9b6;
+
+  --aura-border: #e2edf3;
+  --aura-bg: #f5faff;
+
+  --aura-green: #3d9b68;
+  --aura-green-bg: #ebf8f1;
+
+  --aura-orange: #b7832e;
+  --aura-orange-bg: #fff7e6;
+
+  --aura-red: #c85b64;
+  --aura-red-bg: #fff0f1;
+}
+
+/* ---------------------------------------------------------
+   PAGE
+   --------------------------------------------------------- */
+
+.aura-products-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 34px 36px 50px;
+  box-sizing: border-box;
+  background: var(--aura-bg);
+}
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+.aura-products-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 28px;
+}
+
+.aura-page-eyebrow {
+  margin-bottom: 8px;
+  color: var(--aura-blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.aura-products-header h1 {
+  margin: 0;
+  color: var(--aura-text);
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.aura-products-header p {
+  margin: 8px 0 0;
+  color: var(--aura-text-soft);
+  font-size: 12px;
+}
+
+/* ---------------------------------------------------------
+   ADD PRODUCT
+   --------------------------------------------------------- */
+
+.aura-add-product {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 42px;
+  padding: 0 17px;
+
+  border-radius: 11px;
+
+  background: var(--aura-blue);
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  box-shadow: 0 9px 24px rgba(14, 165, 233, 0.16);
+
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.aura-add-product span {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.aura-add-product:hover {
+  background: var(--aura-blue-dark);
+  color: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 12px 28px rgba(14, 165, 233, 0.22);
+}
+
+/* ---------------------------------------------------------
+   TOOLBAR
+   --------------------------------------------------------- */
+
+.aura-products-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 13px;
+}
+
+.aura-search-form {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+}
+
+.aura-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+}
+
+.aura-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+
+  color: #89a0ae;
+
+  font-size: 18px;
+
+  transform: translateY(-53%);
+  pointer-events: none;
+}
+
+.aura-search-box input {
+  width: 100%;
+  height: 43px;
+  padding: 0 15px 0 42px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--aura-border);
+  border-radius: 11px;
+
+  outline: none;
+
+  background: #ffffff;
+  color: var(--aura-text);
+
+  font-family: inherit;
+  font-size: 11px;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.aura-search-box input::placeholder {
+  color: #a2b3be;
+}
+
+.aura-search-box input:focus {
+  border-color: #9edcf8;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.07);
+}
+
+.aura-search-button {
+  height: 43px;
+  padding: 0 17px;
+
+  border: 0;
+  border-radius: 11px;
+
+  background: #dff4ff;
+  color: var(--aura-blue-dark);
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: all 0.18s ease;
+}
+
+.aura-search-button:hover {
+  background: var(--aura-blue);
+  color: #ffffff;
+}
+
+.aura-toolbar-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 43px;
+  padding: 0 15px;
+
+  border: 1px solid var(--aura-border);
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: var(--aura-text-soft);
+
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.aura-toolbar-filter:hover {
+  border-color: #bfe6f8;
+  color: var(--aura-blue-dark);
+}
+
+/* ---------------------------------------------------------
+   STATUS TABS
+   --------------------------------------------------------- */
+
+.aura-status-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 16px;
+}
+
+.aura-status-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  min-height: 34px;
+  padding: 0 12px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  color: var(--aura-text-soft);
+  text-decoration: none;
+
+  font-size: 9px;
+  font-weight: 750;
+
+  transition: all 0.18s ease;
+}
+
+.aura-status-tab:hover {
+  background: #ffffff;
+  color: var(--aura-blue);
+}
+
+.aura-status-tab span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+
+  border-radius: 999px;
+
+  background: #eef5f8;
+  color: #78909f;
+
+  font-size: 8px;
+}
+
+.aura-status-tab.active {
+  background: #e4f6ff;
+  border-color: #caecfb;
+  color: var(--aura-blue-dark);
+}
+
+.aura-status-tab.active span {
+  background: #ffffff;
+  color: var(--aura-blue-dark);
+}
+
+/* ---------------------------------------------------------
+   PRODUCT CARD
+   --------------------------------------------------------- */
+
+.aura-products-card {
+  overflow: hidden;
+
+  border: 1px solid var(--aura-border);
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 7px 30px rgba(41, 93, 121, 0.045);
+}
+
+.aura-products-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 67px;
+  padding: 0 21px;
+
+  border-bottom: 1px solid var(--aura-border);
+}
+
+.aura-products-card-top > div {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.aura-products-card-top strong {
+  color: var(--aura-text);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.aura-products-card-top span {
+  color: var(--aura-text-muted);
+
+  font-size: 9px;
+}
+
+/* ---------------------------------------------------------
+   TABLE
+   --------------------------------------------------------- */
+
+.aura-products-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.aura-products-table {
+  width: 100%;
+  min-width: 1030px;
+
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.aura-products-table thead th {
+  height: 45px;
+  padding: 0 20px;
+
+  border-bottom: 1px solid var(--aura-border);
+
+  background: #fbfdff;
+
+  color: #8aa0ae;
+
+  text-align: left;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.aura-products-table tbody td {
+  height: 91px;
+  padding: 9px 20px;
+
+  border-bottom: 1px solid #edf4f7;
+
+  vertical-align: middle;
+
+  background: #ffffff;
+
+  font-size: 10px;
+}
+
+.aura-products-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.aura-products-table tbody tr {
+  transition: background 0.16s ease;
+}
+
+.aura-products-table tbody tr:hover td {
+  background: #fbfeff;
+}
+
+/* ---------------------------------------------------------
+   PRODUCT CELL
+   --------------------------------------------------------- */
+
+.aura-product-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 290px;
+}
+
+.aura-product-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 62px;
+
+  width: 62px;
+  height: 62px;
+
+  overflow: hidden;
+
+  border: 1px solid #dfedf4;
+  border-radius: 12px;
+
+  background: #f8fcff;
+}
+
+.aura-product-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.aura-image-placeholder {
+  color: #a5b7c2;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aura-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.aura-product-title {
+  overflow: hidden;
+
+  max-width: 260px;
+
+  color: var(--aura-text);
+
+  text-decoration: none;
+
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 800;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  transition: color 0.18s ease;
+}
+
+.aura-product-title:hover {
+  color: var(--aura-blue);
+}
+
+.aura-product-category {
+  color: #9aabb6;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   BRAND
+   --------------------------------------------------------- */
+
+.aura-table-brand {
+  color: #506c7d;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   PRICE
+   --------------------------------------------------------- */
+
+.aura-table-price {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.aura-table-price strong,
+.aura-normal-price {
+  color: var(--aura-text);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.aura-table-price del {
+  color: #a6b5bf;
+
+  font-size: 8px;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   STOCK
+   --------------------------------------------------------- */
+
+.aura-stock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  height: 28px;
+  padding: 0 10px;
+
+  border-radius: 999px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.aura-stock-pill i {
+  display: block;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+}
+
+.aura-stock-pill.stock-good {
+  background: var(--aura-green-bg);
+  color: var(--aura-green);
+}
+
+.aura-stock-pill.stock-good i {
+  background: #65b784;
+}
+
+.aura-stock-pill.stock-low {
+  background: var(--aura-orange-bg);
+  color: var(--aura-orange);
+}
+
+.aura-stock-pill.stock-low i {
+  background: #d09b3e;
+}
+
+.aura-stock-pill.stock-out {
+  background: var(--aura-red-bg);
+  color: var(--aura-red);
+}
+
+.aura-stock-pill.stock-out i {
+  background: #db727a;
+}
+
+/* ---------------------------------------------------------
+   RATING
+   --------------------------------------------------------- */
+
+.aura-table-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aura-table-rating span {
+  color: #f2b740;
+
+  font-size: 12px;
+}
+
+.aura-table-rating strong {
+  color: var(--aura-text);
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------------
+   STATUS
+   --------------------------------------------------------- */
+
+.aura-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 73px;
+  height: 28px;
+  padding: 0 10px;
+
+  border-radius: 999px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.aura-status-pill.status-live {
+  background: var(--aura-green-bg);
+  color: var(--aura-green);
+}
+
+.aura-status-pill.status-low {
+  background: var(--aura-orange-bg);
+  color: var(--aura-orange);
+}
+
+.aura-status-pill.status-out {
+  background: var(--aura-red-bg);
+  color: var(--aura-red);
+}
+
+.aura-status-pill.status-off {
+  background: #eef3f6;
+  color: #728896;
+}
+
+/* ---------------------------------------------------------
+   EDIT BUTTON
+   --------------------------------------------------------- */
+
+.aura-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 31px;
+  padding: 0 12px;
+
+  border: 1px solid #d5edf9;
+  border-radius: 9px;
+
+  background: #f3fbff;
+  color: var(--aura-blue-dark);
+
+  text-decoration: none;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.aura-edit-button:hover {
+  border-color: var(--aura-blue);
+  background: var(--aura-blue);
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------
+   EMPTY
+   --------------------------------------------------------- */
+
+.aura-empty-products {
+  height: 250px !important;
+
+  text-align: center;
+}
+
+.aura-empty-products > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  height: 100%;
+}
+
+.aura-empty-products strong {
+  color: var(--aura-text);
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.aura-empty-products span {
+  color: var(--aura-text-muted);
+
+  font-size: 9px;
+}
+
+/* ---------------------------------------------------------
+   PAGINATION
+   --------------------------------------------------------- */
+
+.aura-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 61px;
+  padding: 0 20px;
+
+  border-top: 1px solid var(--aura-border);
+}
+
+.aura-pagination-info {
+  color: var(--aura-text-muted);
+
+  font-size: 9px;
+}
+
+.aura-pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.aura-page-button,
+.aura-page-current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 8px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+.aura-page-button {
+  border: 1px solid var(--aura-border);
+
+  background: #ffffff;
+  color: var(--aura-text-soft);
+
+  transition: all 0.18s ease;
+}
+
+.aura-page-button:hover {
+  border-color: #bfe6f8;
+  background: var(--aura-blue-soft);
+  color: var(--aura-blue-dark);
+}
+
+.aura-page-current {
+  background: var(--aura-blue);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------
+   DJANGO DEFAULT ADMIN OVERRIDES
+   --------------------------------------------------------- */
+
+body.change-list {
+  background: var(--aura-bg) !important;
+}
+
+#content {
+  margin-left: 0 !important;
+}
+
+#content-main {
+  width: 100% !important;
+}
+
+#content h1,
+#content .breadcrumbs,
+#content .object-tools,
+#content .actions,
+#content .paginator,
+#content .results {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+  .aura-products-page {
+    padding: 27px 22px 40px;
+  }
+
+  .aura-products-header h1 {
+    font-size: 26px;
+  }
+
+  .aura-products-header {
+    align-items: flex-start;
+  }
+
+  .aura-products-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .aura-search-form {
+    width: 100%;
+  }
+
+  .aura-search-box {
+    max-width: none;
+  }
+
+  .aura-toolbar-filter {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .aura-products-page {
+    padding: 20px 14px 30px;
+  }
+
+  .aura-products-header {
+    flex-direction: column;
+  }
+
+  .aura-add-product {
+    width: 100%;
+  }
+
+  .aura-status-tabs {
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .aura-status-tab {
+    flex: 0 0 auto;
+  }
+
+  .aura-products-card-top {
+    padding: 0 14px;
+  }
+
+  .aura-products-table thead th,
+  .aura-products-table tbody td {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

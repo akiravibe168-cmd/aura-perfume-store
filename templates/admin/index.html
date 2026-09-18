@@ -1,0 +1,256 @@
+{% extends "admin/base_site.html" %} {% block content %}
+
+<div class="aura-dashboard">
+  <!-- TOP BAR -->
+  <div class="aura-topbar">
+    <div class="aura-search">
+      <span>⌕</span>
+      <input type="text" placeholder="Search your store..." />
+      <kbd>Ctrl K</kbd>
+    </div>
+
+    <div class="aura-topbar-right">
+      <button type="button" class="aura-bell">
+        ♢
+        <i></i>
+      </button>
+
+      <div class="aura-top-user">
+        <div class="aura-top-avatar">{{ user.username|first|upper }}</div>
+
+        <div>
+          <strong>{{ user.username|title }}</strong>
+          <span>Administrator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <section class="aura-welcome">
+    <div>
+      <span class="aura-eyebrow">AURA ADMIN</span>
+
+      <h1>
+        Welcome back,
+        <strong>{{ user.username|title }}</strong>
+      </h1>
+
+      <p>Manage your perfume store from one clean workspace.</p>
+    </div>
+
+    <div class="aura-actions">
+      <a
+        href="{% url 'admin:api_order_changelist' %}"
+        class="aura-btn aura-btn-light"
+      >
+        View Orders
+      </a>
+
+      <a
+        href="{% url 'admin:api_perfume_add' %}"
+        class="aura-btn aura-btn-blue"
+      >
+        <span>+</span>
+        Add Product
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="aura-stats">
+    <a href="{% url 'admin:api_order_changelist' %}" class="aura-stat">
+      <div class="aura-stat-head">
+        <span>ORDERS</span>
+        <div class="aura-stat-icon">▤</div>
+      </div>
+
+      <strong>—</strong>
+
+      <div class="aura-stat-foot">
+        <span>Customer orders</span>
+        <b>→</b>
+      </div>
+    </a>
+
+    <a href="{% url 'admin:api_perfume_changelist' %}" class="aura-stat">
+      <div class="aura-stat-head">
+        <span>PRODUCTS</span>
+        <div class="aura-stat-icon">◇</div>
+      </div>
+
+      <strong>—</strong>
+
+      <div class="aura-stat-foot">
+        <span>Perfumes</span>
+        <b>→</b>
+      </div>
+    </a>
+
+    <a href="{% url 'admin:auth_user_changelist' %}" class="aura-stat">
+      <div class="aura-stat-head">
+        <span>CUSTOMERS</span>
+        <div class="aura-stat-icon">♙</div>
+      </div>
+
+      <strong>—</strong>
+
+      <div class="aura-stat-foot">
+        <span>Registered users</span>
+        <b>→</b>
+      </div>
+    </a>
+
+    <div class="aura-stat aura-stat-status">
+      <div class="aura-stat-head">
+        <span>STORE STATUS</span>
+
+        <div class="aura-live">
+          <i></i>
+          LIVE
+        </div>
+      </div>
+
+      <strong>Online</strong>
+
+      <div class="aura-stat-foot">
+        <span>Storefront active</span>
+        <b>✦</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <section class="aura-layout">
+    <div class="aura-left">
+      <!-- RECENT ORDERS -->
+      <section class="aura-card">
+        <div class="aura-card-header">
+          <div>
+            <span class="aura-eyebrow">ORDERS</span>
+            <h2>Recent orders</h2>
+          </div>
+
+          <a href="{% url 'admin:api_order_changelist' %}"> View all → </a>
+        </div>
+
+        <div class="aura-empty">
+          <div class="aura-empty-icon">▤</div>
+
+          <h3>Customer orders</h3>
+
+          <p>
+            Review your real customer purchases, payment methods and order
+            status.
+          </p>
+
+          <a
+            href="{% url 'admin:api_order_changelist' %}"
+            class="aura-btn aura-btn-blue"
+          >
+            Open Orders
+            <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- QUICK ACTIONS -->
+      <section class="aura-card">
+        <div class="aura-card-header">
+          <div>
+            <span class="aura-eyebrow">WORKSPACE</span>
+            <h2>Quick actions</h2>
+          </div>
+        </div>
+
+        <div class="aura-quick-grid">
+          <a href="{% url 'admin:api_perfume_add' %}" class="aura-quick">
+            <div class="aura-quick-icon">+</div>
+
+            <div>
+              <strong>Add product</strong>
+              <span>Create a new perfume</span>
+            </div>
+
+            <b>→</b>
+          </a>
+
+          <a href="{% url 'admin:api_order_changelist' %}" class="aura-quick">
+            <div class="aura-quick-icon">▤</div>
+
+            <div>
+              <strong>Manage orders</strong>
+              <span>Review customer purchases</span>
+            </div>
+
+            <b>→</b>
+          </a>
+
+          <a
+            href="{% url 'admin:api_category_changelist' %}"
+            class="aura-quick"
+          >
+            <div class="aura-quick-icon">▦</div>
+
+            <div>
+              <strong>Categories</strong>
+              <span>Organize your catalog</span>
+            </div>
+
+            <b>→</b>
+          </a>
+
+          <a href="{% url 'admin:auth_user_changelist' %}" class="aura-quick">
+            <div class="aura-quick-icon">♙</div>
+
+            <div>
+              <strong>Customers</strong>
+              <span>Manage customer accounts</span>
+            </div>
+
+            <b>→</b>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT -->
+    <aside class="aura-right">
+      <section class="aura-profile">
+        <div class="aura-profile-banner">AURA</div>
+
+        <div class="aura-profile-body">
+          <div class="aura-profile-avatar">{{ user.username|first|upper }}</div>
+
+          <span class="aura-eyebrow"> ADMIN ACCOUNT </span>
+
+          <h2>{{ user.username|title }}</h2>
+
+          <p>Store administrator</p>
+
+          <div class="aura-profile-links">
+            <a href="{% url 'admin:password_change' %}"> Change password </a>
+
+            <a href="/"> Visit storefront </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="aura-brand-card">
+        <div class="aura-brand-circle">A</div>
+
+        <span class="aura-eyebrow"> AURA PHILOSOPHY </span>
+
+        <h2>
+          Good things
+          <br />
+          smell better.
+        </h2>
+
+        <p>A simple workspace for your modern perfume business.</p>
+      </section>
+    </aside>
+  </section>
+</div>
+
+{% endblock %}

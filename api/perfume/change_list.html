@@ -1,0 +1,326 @@
+{% extends "admin/base_site.html" %} {% load static %} {% block extrastyle %}
+<link
+  rel="stylesheet"
+  href="{% static 'admin/css/aura-products.css' %}?v=6000"
+/>
+{% endblock %} {% block title %} Products | AURA Admin {% endblock %} {% block
+content %}
+
+<div class="aura-products-page">
+  <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+  <div class="aura-products-header">
+    <div>
+      <div class="aura-page-eyebrow">AURA ADMIN</div>
+
+      <h1>Products</h1>
+
+      <p>Manage your perfume collection</p>
+    </div>
+
+    <a href="{% url 'admin:api_perfume_add' %}" class="aura-add-product">
+      <span>+</span>
+      Add Product
+    </a>
+  </div>
+
+  <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+
+  <div class="aura-products-toolbar">
+    <form method="get" class="aura-search-form">
+      <div class="aura-search-box">
+        <span class="aura-search-icon"> ⌕ </span>
+
+        <input
+          type="text"
+          name="q"
+          value="{{ cl.query }}"
+          placeholder="Search products..."
+          autocomplete="off"
+        />
+      </div>
+
+      <input
+        type="hidden"
+        name="stock_status"
+        value="{{ request.GET.stock_status }}"
+      />
+
+      <button type="submit" class="aura-search-button">Search</button>
+    </form>
+
+    <a
+      href="{% url 'admin:api_perfume_changelist' %}"
+      class="aura-toolbar-filter"
+    >
+      Filters
+      <span>⌄</span>
+    </a>
+  </div>
+
+  <!-- =====================================================
+         STATUS TABS
+         ===================================================== -->
+
+  <div class="aura-status-tabs">
+    <a
+      href="{% url 'admin:api_perfume_changelist' %}"
+      class="aura-status-tab {% if not request.GET.stock_status %}active{% endif %}"
+    >
+      All Products
+
+      <span> {{ cl.result_count }} </span>
+    </a>
+
+    <a
+      href="?stock_status=active"
+      class="aura-status-tab {% if request.GET.stock_status == 'active' %}active{% endif %}"
+    >
+      Active
+    </a>
+
+    <a
+      href="?stock_status=low"
+      class="aura-status-tab {% if request.GET.stock_status == 'low' %}active{% endif %}"
+    >
+      Low Stock
+    </a>
+
+    <a
+      href="?stock_status=out"
+      class="aura-status-tab {% if request.GET.stock_status == 'out' %}active{% endif %}"
+    >
+      Out of Stock
+    </a>
+  </div>
+
+  <!-- =====================================================
+         PRODUCT TABLE
+         ===================================================== -->
+
+  <div class="aura-products-card">
+    <div class="aura-products-card-top">
+      <div>
+        <strong> Product Collection </strong>
+
+        <span> {{ cl.result_count }} products </span>
+      </div>
+    </div>
+
+    <div class="aura-products-table-wrap">
+      <table class="aura-products-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+
+            <th>Brand</th>
+
+            <th>Price</th>
+
+            <th>Stock</th>
+
+            <th>Rating</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for product in cl.result_list %}
+
+          <tr>
+            <!-- PRODUCT -->
+
+            <td>
+              <div class="aura-product-cell">
+                <div class="aura-product-photo">
+                  {% if product.image %}
+
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+
+                  {% else %}
+
+                  <div class="aura-image-placeholder">No image</div>
+
+                  {% endif %}
+                </div>
+
+                <div class="aura-product-copy">
+                  <a
+                    href="{% url 'admin:api_perfume_change' product.pk %}"
+                    class="aura-product-title"
+                  >
+                    {{ product.name }}
+                  </a>
+
+                  <span class="aura-product-category">
+                    {% if product.category %} {{ product.category.name }} {%
+                    else %} Uncategorized {% endif %}
+                  </span>
+                </div>
+              </div>
+            </td>
+
+            <!-- BRAND -->
+
+            <td>
+              <span class="aura-table-brand">
+                {{ product.brand|default:"—" }}
+              </span>
+            </td>
+
+            <!-- PRICE -->
+
+            <td>
+              {% if product.sale_price %}
+
+              <div class="aura-table-price">
+                <strong> ${{ product.sale_price }} </strong>
+
+                <del> ${{ product.price }} </del>
+              </div>
+
+              {% else %}
+
+              <strong class="aura-normal-price"> ${{ product.price }} </strong>
+
+              {% endif %}
+            </td>
+
+            <!-- STOCK -->
+
+            <td>
+              {% if product.stock <= 0 %}
+
+              <span class="aura-stock-pill stock-out">
+                <i></i>
+                Out
+              </span>
+
+              {% elif product.stock <= 5 %}
+
+              <span class="aura-stock-pill stock-low">
+                <i></i>
+                {{ product.stock }} left
+              </span>
+
+              {% else %}
+
+              <span class="aura-stock-pill stock-good">
+                <i></i>
+                {{ product.stock }}
+              </span>
+
+              {% endif %}
+            </td>
+
+            <!-- RATING -->
+
+            <td>
+              <div class="aura-table-rating">
+                <span> ★ </span>
+
+                <strong> {{ product.rating }} </strong>
+              </div>
+            </td>
+
+            <!-- STATUS -->
+
+            <td>
+              {% if not product.is_available %}
+
+              <span class="aura-status-pill status-off"> Unavailable </span>
+
+              {% elif product.stock <= 0 %}
+
+              <span class="aura-status-pill status-out"> Out of stock </span>
+
+              {% elif product.stock <= 5 %}
+
+              <span class="aura-status-pill status-low"> Low stock </span>
+
+              {% else %}
+
+              <span class="aura-status-pill status-live"> Active </span>
+
+              {% endif %}
+            </td>
+
+            <!-- ACTION -->
+
+            <td>
+              <a
+                href="{% url 'admin:api_perfume_change' product.pk %}"
+                class="aura-edit-button"
+              >
+                Edit
+              </a>
+            </td>
+          </tr>
+
+          {% empty %}
+
+          <tr>
+            <td colspan="7" class="aura-empty-products">
+              <div>
+                <strong> No products found </strong>
+
+                <span> Try a different search or add a new product. </span>
+              </div>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- =================================================
+             PAGINATION
+             ================================================= -->
+
+    {% if cl.paginator.num_pages > 1 %}
+
+    <div class="aura-pagination">
+      <div class="aura-pagination-info">
+        Showing {{ cl.result_count }} products
+      </div>
+
+      <div class="aura-pagination-buttons">
+        {% if cl.page_num > 1 %}
+
+        <a
+          href="?{% if cl.query %}q={{ cl.query|urlencode }}&{% endif %}{% if request.GET.stock_status %}stock_status={{ request.GET.stock_status }}&{% endif %}p={{ cl.page_num|add:'-1' }}"
+          class="aura-page-button"
+        >
+          ←
+        </a>
+
+        {% endif %}
+
+        <span class="aura-page-current"> {{ cl.page_num }} </span>
+
+        {% if cl.page_num < cl.paginator.num_pages %}
+
+        <a
+          href="?{% if cl.query %}q={{ cl.query|urlencode }}&{% endif %}{% if request.GET.stock_status %}stock_status={{ request.GET.stock_status }}&{% endif %}p={{ cl.page_num|add:'1' }}"
+          class="aura-page-button"
+        >
+          →
+        </a>
+
+        {% endif %}
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
