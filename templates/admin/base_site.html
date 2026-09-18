@@ -1,5 +1,3 @@
-{% extends "admin/base.html" %} {% load static %} {% block extrastyle %}
-<link rel="stylesheet" href="{% static 'admin/css/aura-admin.css' %}?v=4000" />
-{% endblock %} {% block branding %}
-<a href="{% url 'admin:index' %}" class="aura-hidden-brand"> AURA </a>
+{% extends "admin/base.html" %} {% load static %} {% block branding %}
+<a href="{% url 'admin:index' %}"> AURA Admin </a>
 {% endblock %}
